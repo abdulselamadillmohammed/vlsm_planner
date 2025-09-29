@@ -4,6 +4,13 @@
 # vslm plan 10.0.0.0/16 --sizes 500, 200, 200, 50, 20 --names
 # core, eng, sales, lab, iot
 
+# --- Arg orders --- 
+# 0 : subcommands
+# (2n+1) : flags {1,3,5... 2n+1} where n = len(ARGV//2)
+# 2n : arguments
+# -------------------
+
+
 sizes = ARGV[1]
 
 # Implementation of RFC1918 (basic subnetting)

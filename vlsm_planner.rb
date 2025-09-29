@@ -9,3 +9,10 @@ sizes = ARGV[1]
 # Implementation of RFC1918 (basic subnetting)
 puts ("Here are the sizes: #{sizes}")
 puts ("Type of sizes: #{sizes.class}")
+
+# Parser for sizes
+sizes = sizes.split(",")
+puts ("Here are the sizes: #{sizes}")
+puts ("Type of sizes: #{sizes.class}")
+# Here are the sizes: ["500", "200", "200", "50", "20"]
+# Type of sizes: Array

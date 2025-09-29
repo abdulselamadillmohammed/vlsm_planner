@@ -64,6 +64,16 @@ required_test_2 = hosts_to_prefix(1)
 puts ("the amount you are required for 500 hosts: #{required_test_1}")
 puts ("the amount you are required for 1 hosts: #{required_test_2}")
 
+# --- Prep prefixes --- 
+prefixes = []
+sizes.each do |num_hosts|
+    prefixes << hosts_to_prefix(num_hosts)
+end
+puts ("Here are the Prefixes: #{prefixes}")
+
+
+
+
 # --- Returning ---
 
 headers = [

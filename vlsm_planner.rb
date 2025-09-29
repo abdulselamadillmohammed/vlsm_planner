@@ -42,6 +42,9 @@ def hosts_to_prefix(num_hosts)
     return 32 - iterator
 end
 
+def subnet_capacity(prefix)
+    return (2 ** (32 - prefix)) - 2 # watch out for network and broadcast address
+
 # /32:1, /31:2, /30:4, /29:8, /28:16, /27:32, /26:64, /25:128, /24:256
 
 sizes = ARGV[1]

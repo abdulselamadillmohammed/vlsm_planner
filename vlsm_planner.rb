@@ -12,6 +12,35 @@
 # -------------------
 
 
+# You can create a hashmap to get 0(1) access but manually 
+# computing upper bounds is relatively negligible since n is 
+# pretty small 
+
+# To allow for elegant formatting every sub box should be 
+# 4(3)+ 4 = 16 cause => 255.255.255.255  
+
+# --- Expected format ---
+# label  | subnet        | prefix | usable_first | usable_last  | broadcast    | capacity | waste
+# core   | 10.0.0.0      | /23    | 10.0.0.1     | 10.0.1.254   | 10.0.1.255   | 510      | 10
+# eng    | 10.0.2.0      | /24    | 10.0.2.1     | 10.0.2.254   | 10.0.2.255   | 254      | 54
+# sales  | 10.0.3.0      | /24    | 10.0.3.1     | 10.0.3.254   | 10.0.3.255   | 254      | 54
+# lab    | 10.0.4.0      | /26    | 10.0.4.1     | 10.0.4.62    | 10.0.4.63    | 62       | 12
+# iot    | 10.0.4.64     | /27    | 10.0.4.65    | 10.0.4.94    | 10.0.4.95    | 30       | 10
+# ------------------------
+
+
+def get_cidr(num_hosts)
+    counter = 1
+    while counter < num_hosts
+        counter *= 2
+    end
+    # Logic being if I need 1 host, you would require at least /30 address 
+    # Apperently RFC3021 allows point to point links but just going for simplest case
+    return 31 - counter
+end
+
+# /32:1, /31:2, /30:4, /29:8, /28:16, /27:32, /26:64, /25:128, /24:256
+
 sizes = ARGV[1]
 
 # Implementation of RFC1918 (basic subnetting)
@@ -26,11 +55,19 @@ puts ("Type of sizes: #{sizes.class}")
 # Type of sizes: Array
 sizes = sizes.map { |x| x.to_i}
 
-# You can create a hashmap to get 0(1) access but manually 
-# computing upper bounds is relatively negligible since n is 
-# pretty small 
+# --- Test CIDR ---
 
+# --- Returning ---
 
-# To allow for elegant formatting every sub box should be 
-# 4(3)+ 4 = 16 cause => 255.255.255.255  
-
+headers = [
+  "label",
+  "subnet",
+  "prefix",
+  "usable_first",
+  "usable_last",
+  "broadcast",
+  "capacity",
+  "waste"
+]
+# pad each header to 16 chars (spaces added if shorter)
+puts headers.map { |h| h.ljust(16) }.join

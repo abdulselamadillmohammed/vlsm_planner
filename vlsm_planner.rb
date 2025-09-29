@@ -16,3 +16,4 @@ puts ("Here are the sizes: #{sizes}")
 puts ("Type of sizes: #{sizes.class}")
 # Here are the sizes: ["500", "200", "200", "50", "20"]
 # Type of sizes: Array
+sizes = sizes.map { |x| x.to_i}

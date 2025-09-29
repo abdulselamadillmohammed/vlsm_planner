@@ -30,13 +30,16 @@
 
 
 def hosts_to_prefix(num_hosts)
+    raise ArgumentError, "num_hosts must be >= 1" if num_hosts < 1
+
+    num_hosts += 2 # for boardcast adress and network address 
     counter = 1
+    iterator = 0
     while counter < num_hosts
         counter *= 2
+        iterator += 1
     end
-    # Logic being if I need 1 host, you would require at least /30 address 
-    # Apperently RFC3021 allows point to point links but just going for simplest case
-    return 31 - counter
+    return 32 - iterator
 end
 
 # /32:1, /31:2, /30:4, /29:8, /28:16, /27:32, /26:64, /25:128, /24:256
@@ -57,7 +60,9 @@ sizes = sizes.map { |x| x.to_i}
 
 # --- Test CIDR ---
 required_test_1 = hosts_to_prefix(500)
+required_test_2 = hosts_to_prefix(1)
 puts ("the amount you are required for 500 hosts: #{required_test_1}")
+puts ("the amount you are required for 1 hosts: #{required_test_2}")
 
 # --- Returning ---
 

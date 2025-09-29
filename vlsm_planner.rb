@@ -29,7 +29,7 @@
 # ------------------------
 
 
-def get_cidr(num_hosts)
+def hosts_to_prefix(num_hosts)
     counter = 1
     while counter < num_hosts
         counter *= 2
@@ -56,6 +56,8 @@ puts ("Type of sizes: #{sizes.class}")
 sizes = sizes.map { |x| x.to_i}
 
 # --- Test CIDR ---
+required_test_1 = hosts_to_prefix(500)
+puts ("the amount you are required for 500 hosts: #{required_test_1}")
 
 # --- Returning ---
 

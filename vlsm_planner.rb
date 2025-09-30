@@ -102,8 +102,10 @@ puts ("Here are the Wasted spots: #{wasted_spots_count}")
 # Simple fix: choose by 8 counting
 
 # 1. get the hostadress
-hostadress
+host_address = ARGV[1].split("/")
+host_address_cidr_prefix = host_address[1].to_i
 
+puts "#{host_address_cidr_prefix}"
 
 headers = [
   "label",

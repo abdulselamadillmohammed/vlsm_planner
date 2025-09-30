@@ -56,6 +56,18 @@ def subnet_augmenter(subnet, capacity)
     proper_capacity = capacity + 2
     result = Math.log2(capacity).ceil
     # puts "#{result.ceil}" 
+
+    if result >= 16 
+        result -= 16
+        subnet[-3] = subnet[-3] + 2**result
+    elsif result >= 8
+        result -= 8
+        subnet[-2] = subnet[-2] + 2**result
+    else
+    ## deal with lower numbers
+    subnet[-1] = subnet[-1] + capacity
+    end
+    return subnet
 end
 
 # /32:1, /31:2, /30:4, /29:8, /28:16, /27:32, /26:64, /25:128, /24:256
@@ -122,8 +134,10 @@ subnets = [] ## will contain 1 more value because of starting and ending locatio
 subnets << network_address
 puts "Subnets: #{subnets}"
 for i in 0..capacities.length-1
+    puts "#{i}, #{subnets[i].class}, #{capacities[i].class}"
     subnets << subnet_augmenter(subnets[i], capacities[i])
 end
+puts "Subnets: #{subnets}"
 
 
 headers = [

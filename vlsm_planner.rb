@@ -45,6 +45,10 @@ end
 def subnet_capacity(prefix)
     return (2 ** (32 - prefix)) - 2 # watch out for network and broadcast address
 end
+
+def wasted_spots(prefix, num_hosts)
+    return (subnet_capacity(prefix) - num_hosts)
+end
 # /32:1, /31:2, /30:4, /29:8, /28:16, /27:32, /26:64, /25:128, /24:256
 
 sizes = ARGV[1]
@@ -82,6 +86,15 @@ prefixes.each do |prefix|
 end
 puts ("Here are the Capacitiies: #{capacities}")
 # --- Returning ---
+
+# --- Prep wasted spots ---
+wasted_spots_count = []
+# Iterate in the same length as 
+for i in 0..prefixes.length - 1
+    wasted_spots_count << wasted_spots(prefixes[i], sizes[i])
+end
+puts ("Here are the Wasted spots: #{wasted_spots_count}")
+# -------------------------
 
 headers = [
   "label",

@@ -53,6 +53,12 @@ def wasted_spots(prefix, num_hosts)
 end
 
 def subnet_augmenter(subnet, capacity)
+    temp = []
+    subnet.each do |x|
+        temp << x
+    end
+    subnet = temp
+
     proper_capacity = capacity + 2
     result = Math.log2(capacity).ceil
     # puts "#{result.ceil}" 
@@ -64,8 +70,15 @@ def subnet_augmenter(subnet, capacity)
         result -= 8
         subnet[-2] = subnet[-2] + 2**result
     else
-    ## deal with lower numbers
-    subnet[-1] = subnet[-1] + capacity
+        ## deal with lower numbers
+        
+        # If its a non zero number, then you already watched out for broadcast and network addresses
+        if subnet[-1] == 0
+            subnet[-1] = subnet[-1] + (capacity + 2)
+        else
+            subnet[-1] = subnet[-1] + capacity
+        end
+
     end
     return subnet
 end

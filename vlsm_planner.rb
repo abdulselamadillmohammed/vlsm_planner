@@ -51,6 +51,13 @@ end
 def wasted_spots(prefix, num_hosts)
     return (subnet_capacity(prefix) - num_hosts)
 end
+
+def subnet_augmenter(subnet, capacity)
+    proper_capacity = capacity + 2
+    result = Math.log2(capacity).ceil
+    # puts "#{result.ceil}" 
+end
+
 # /32:1, /31:2, /30:4, /29:8, /28:16, /27:32, /26:64, /25:128, /24:256
 
 sizes = ARGV[3]
@@ -110,6 +117,14 @@ network_address = network_address[0].split(".").map{ |x|  x.to_i }
 
 # 3. Since we assume that requirements are passed by largest first, we will
 # Practically /16 is the max needed to worry about but /24 will be implemented incase of simulation needs
+
+subnets = [] ## will contain 1 more value because of starting and ending locations
+subnets << network_address
+puts "Subnets: #{subnets}"
+for i in 0..capacities.length-1
+    subnets << subnet_augmenter(subnets[i], capacities[i])
+end
+
 
 headers = [
   "label",

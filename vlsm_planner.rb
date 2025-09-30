@@ -101,11 +101,13 @@ puts ("Here are the Wasted spots: #{wasted_spots_count}")
 # --- Deal with subnetting rules ---
 # Simple fix: choose by 8 counting
 
-# 1. get the hostadress
-host_address = ARGV[1].split("/")
-host_address_cidr_prefix = host_address[1].to_i
+# 1. get the hostadress cidr prefix
+network_address = ARGV[1].split("/")
+network_address_cidr_prefix = network_address[1].to_i
 
-puts "#{host_address_cidr_prefix}"
+# 2. Split the host address into approptiate 8 bit blocks
+network_address = network_address[0].split(".").map{ |x|  x.to_i }
+
 
 headers = [
   "label",

@@ -108,6 +108,8 @@ network_address_cidr_prefix = network_address[1].to_i
 # 2. Split the host address into approptiate 8 bit blocks
 network_address = network_address[0].split(".").map{ |x|  x.to_i }
 
+# 3. Since we assume that requirements are passed by largest first, we will
+# Practically /16 is the max needed to worry about but /24 will be implemented incase of simulation needs
 
 headers = [
   "label",

@@ -11,6 +11,8 @@
 # 2n : arguments
 # -------------------
 
+# MOST BASIC USECASE
+# ruby vlsm_planner.rb plan 10.0.0.0/16 --sizes 500,200,200,50,20
 
 # You can create a hashmap to get 0(1) access but manually 
 # computing upper bounds is relatively negligible since n is 
@@ -51,7 +53,7 @@ def wasted_spots(prefix, num_hosts)
 end
 # /32:1, /31:2, /30:4, /29:8, /28:16, /27:32, /26:64, /25:128, /24:256
 
-sizes = ARGV[1]
+sizes = ARGV[3]
 
 # Implementation of RFC1918 (basic subnetting)
 puts ("Here are the sizes: #{sizes}")
@@ -95,6 +97,13 @@ for i in 0..prefixes.length - 1
 end
 puts ("Here are the Wasted spots: #{wasted_spots_count}")
 # -------------------------
+
+# --- Deal with subnetting rules ---
+# Simple fix: choose by 8 counting
+
+# 1. get the hostadress
+hostadress
+
 
 headers = [
   "label",

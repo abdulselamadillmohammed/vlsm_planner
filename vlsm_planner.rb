@@ -152,6 +152,21 @@ for i in 0..capacities.length-1
 end
 puts "Subnets: #{subnets}"
 
+# --- Prepared subnets ---
+returnable_subnets = []
+subnets.each do |subnet|
+    returnable_subnets << subnet.join(".").to_s
+end
+puts "subnet: #{returnable_subnets}"
+# -------------------------
+
+first_usable = []
+subnets.each do |subnet|
+    subnet[-1] +=1
+    first_usable << subnet.join(".").to_s
+end
+
+puts "usable_first: #{first_usable}"
 
 headers = [
   "label",

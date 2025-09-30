@@ -1,3 +1,4 @@
 1. Handle cases where args are not passed in sequentially
 2. Handle non sequential passing in of flags
 3. Add warnings or break for logical issues
+4. Rewrite functionality in bits to avoid future headaches

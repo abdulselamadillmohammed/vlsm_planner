@@ -189,13 +189,20 @@ puts "subnet: #{returnable_subnets}"
 # -------------------------
 
 first_usable = []
-subnets_copy = []
 
-subnets.each {
-    |x| subnets_copy << x 
-}
+deep_copied_matrix = []
+for _ in 0..(subnets.length - 1)
+    deep_copied_matrix << []
+end
 
-subnets_copy.each do |subnet|
+for i in 0..(subnets.length - 1)
+    for j in 0..(subnets[i].length - 1)
+        deep_copied_matrix[i] << subnets[i][j]
+    end
+end
+puts "Deep copied matrix #{deep_copied_matrix}"
+
+deep_copied_matrix.each do |subnet|
     subnet[-1] +=1
     first_usable << subnet.join(".").to_s
 end

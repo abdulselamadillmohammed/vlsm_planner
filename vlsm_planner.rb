@@ -91,7 +91,7 @@ def get_broadcast_address(address)
         temp << x
     end
     address = temp
-
+    puts "#{address[-1]}"
     if address[-1] != 0
         puts("edge case")
         address[-1] -= 1
@@ -178,7 +178,7 @@ for i in 0..capacities.length-1
     puts "#{i}, #{subnets[i].class}, #{capacities[i].class}"
     subnets << subnet_augmenter(subnets[i], capacities[i])
 end
-puts "Subnets: #{subnets}"
+puts "Subnets -- main: #{subnets}"
 
 # --- Prepared subnets ---
 returnable_subnets = []
@@ -189,11 +189,22 @@ puts "subnet: #{returnable_subnets}"
 # -------------------------
 
 first_usable = []
-subnets.each do |subnet|
+subnets_copy = []
+
+subnets.each {
+    |x| subnets_copy << x 
+}
+
+subnets_copy.each do |subnet|
     subnet[-1] +=1
     first_usable << subnet.join(".").to_s
 end
 puts "usable_first: #{first_usable}"
+puts "subnets -- after  #{subnets}"
+
+
+
+
 
 # --- Preparing boardcast addresses ---
 broadcast_addresses = []

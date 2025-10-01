@@ -83,6 +83,33 @@ def subnet_augmenter(subnet, capacity)
     return subnet
 end
 
+def get_broadcast_address(address)
+    # I get [10,0,2,0] || [10,1,0,0]
+    # Making an assumption that length is 4, not dealing with extensibility currently
+    temp = []
+    address.each do |x|
+        temp << x
+    end
+    address = temp
+
+    if address[-1] != 0
+        address[-1] -= 1
+        return address
+    end
+    last_index = -1
+
+    while address[last_index] != 0:
+        last_index -= 1
+    end
+    last_index = address.length + last_index
+    address[last_index] -= 1
+    last_index += 1
+    while last_index < address.length
+        
+    end
+
+end
+
 # /32:1, /31:2, /30:4, /29:8, /28:16, /27:32, /26:64, /25:128, /24:256
 
 sizes = ARGV[3]

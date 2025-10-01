@@ -93,6 +93,7 @@ def get_broadcast_address(address)
     address = temp
 
     if address[-1] != 0
+        puts("edge case")
         address[-1] -= 1
         return address
     end
@@ -107,7 +108,7 @@ def get_broadcast_address(address)
     while last_index < address.length
         addresses[last_index] = 255
     end
-
+    return address
 end
 
 # /32:1, /31:2, /30:4, /29:8, /28:16, /27:32, /26:64, /25:128, /24:256
@@ -196,9 +197,11 @@ puts "usable_first: #{first_usable}"
 
 # --- Preparing boardcast addresses ---
 broadcast_addresses = []
-for i in 1..subnets.length
+for i in 1..(subnets.length - 1)
+    #puts "#{subnets[i]}"
     broadcast_addresses << get_broadcast_address(subnets[i])
 end
+puts "#{broadcast_addresses}"
 
 
 headers = [

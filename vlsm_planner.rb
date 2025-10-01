@@ -99,9 +99,10 @@ def get_broadcast_address(address)
     end
     last_index = -1
 
-    while address[last_index] != 0
+    while address[last_index] == 0
         last_index -= 1
     end
+
     last_index = address.length + last_index
     address[last_index] -= 1
     last_index += 1

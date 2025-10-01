@@ -12,8 +12,9 @@ for _ in 0..(original_martix.length - 1)
 end
 
 for i in 0..(original_martix.length - 1)
-    for i in 0..(x.length - 1)
-        
+    for j in 0..(original_martix[i].length - 1)
+        deep_copied_matrix[i] << original_martix[i][j]
     end
 end
 puts "#{deep_copied_matrix}"
+

@@ -165,8 +165,14 @@ subnets.each do |subnet|
     subnet[-1] +=1
     first_usable << subnet.join(".").to_s
 end
-
 puts "usable_first: #{first_usable}"
+
+# --- Preparing boardcast addresses ---
+broadcast_addresses = []
+for 1..subnets.length
+    broadcast_addresses << get_broadcast_address()
+end
+
 
 headers = [
   "label",

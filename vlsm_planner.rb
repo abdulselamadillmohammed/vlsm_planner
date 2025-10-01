@@ -214,6 +214,7 @@ puts "subnets -- after  #{subnets}"
 
 
 # --- Preparing boardcast addresses ---
+puts "subnets goign into broadcastign functionality #{subnets}" 
 broadcast_addresses = []
 for i in 1..(subnets.length - 1)
     #puts "#{subnets[i]}"

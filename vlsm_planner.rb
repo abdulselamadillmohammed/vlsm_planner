@@ -98,14 +98,14 @@ def get_broadcast_address(address)
     end
     last_index = -1
 
-    while address[last_index] != 0:
+    while address[last_index] != 0
         last_index -= 1
     end
     last_index = address.length + last_index
     address[last_index] -= 1
     last_index += 1
     while last_index < address.length
-        
+        addresses[last_index] = 255
     end
 
 end
@@ -196,8 +196,8 @@ puts "usable_first: #{first_usable}"
 
 # --- Preparing boardcast addresses ---
 broadcast_addresses = []
-for 1..subnets.length
-    broadcast_addresses << get_broadcast_address()
+for i in 1..subnets.length
+    broadcast_addresses << get_broadcast_address(subnets[i])
 end
 
 

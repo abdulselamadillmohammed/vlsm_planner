@@ -107,7 +107,8 @@ def get_broadcast_address(address)
     address[last_index] -= 1
     last_index += 1
     while last_index < address.length
-        addresses[last_index] = 255
+        address[last_index] = 255
+        last_index+=1
     end
     return address
 end
@@ -209,10 +210,6 @@ deep_copied_matrix.each do |subnet|
 end
 puts "usable_first: #{first_usable}"
 puts "subnets -- after  #{subnets}"
-
-
-
-
 
 # --- Preparing boardcast addresses ---
 puts "subnets goign into broadcastign functionality #{subnets}" 

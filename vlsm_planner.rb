@@ -29,7 +29,15 @@
 # lab    | 10.0.4.0      | /26    | 10.0.4.1     | 10.0.4.62    | 10.0.4.63    | 62       | 12
 # iot    | 10.0.4.64     | /27    | 10.0.4.65    | 10.0.4.94    | 10.0.4.95    | 30       | 10
 # ------------------------
+puts "ARGV[5]: #{ARGV[5]}"
 
+def collect_labels()
+    labels = []
+    ARGV[5].split(",").each do |label|
+        labels << label
+    end
+    return labels
+end
 
 def hosts_to_prefix(num_hosts)
     raise ArgumentError, "num_hosts must be >= 1" if num_hosts < 1
@@ -258,8 +266,8 @@ deep_copied_broadcast_addresses.each do |subnet|
 end
 puts "Returnable broadcast addresses #{returnable_last_usable_addresses}"
 
-
-
+subnet_labels = collect_labels()
+puts "Labels: #{subnet_labels}"
 
 headers = [
   "label",

@@ -113,6 +113,10 @@ def get_broadcast_address(address)
     return address
 end
 
+def array_to_returnable_address(subnet)
+    return subnet.join(".").to_s
+end
+
 # /32:1, /31:2, /30:4, /29:8, /28:16, /27:32, /26:64, /25:128, /24:256
 
 sizes = ARGV[3]
@@ -239,6 +243,14 @@ deep_copied_broadcast_addresses.each do |address|
     address[-1] = (address[-1] - 1)
 end
 puts "Deep copied broadcast addresses #{deep_copied_broadcast_addresses}"
+
+returnable_last_usable_addresses = []
+deep_copied_broadcast_addresses.each do |subnet|
+    returnable_last_usable_addresses << array_to_returnable_address(subnet)
+end
+puts "Returnable broadcast addresses #{returnable_last_usable_addresses}"
+
+
 
 
 headers = [

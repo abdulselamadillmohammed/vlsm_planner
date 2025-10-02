@@ -61,7 +61,7 @@ def subnet_augmenter(subnet, capacity)
 
     proper_capacity = capacity + 2
     result = Math.log2(capacity).ceil
-    # puts "#{result.ceil}" 
+    puts "SUBNET: #{subnet} | RESULT: #{result}" 
 
     if result >= 16 
         result -= 16
@@ -73,12 +73,12 @@ def subnet_augmenter(subnet, capacity)
         ## deal with lower numbers
         
         # If its a non zero number, then you already watched out for broadcast and network addresses
-        if subnet[-1] == 0
-            subnet[-1] = subnet[-1] + (capacity + 2)
-        else
-            subnet[-1] = subnet[-1] + capacity
-        end
-
+        # if subnet[-1] == 0
+        #     subnet[-1] = subnet[-1] + (capacity + 2)
+        # else
+        #     subnet[-1] = subnet[-1] + (capacity + 2)
+        # end
+        subnet[-1] = subnet[-1] + (capacity + 2)
     end
     return subnet
 end

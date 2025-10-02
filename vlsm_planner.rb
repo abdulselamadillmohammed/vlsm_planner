@@ -219,7 +219,26 @@ for i in 1..(subnets.length - 1)
     #puts "#{subnets[i]}"
     broadcast_addresses << get_broadcast_address(subnets[i])
 end
-puts "#{broadcast_addresses}"
+puts "BROADCAST: #{broadcast_addresses}"
+# --------------------------------------
+
+# --- Preparing last usable addresses ---
+deep_copied_broadcast_addresses = []
+for _ in 0..(broadcast_addresses.length - 1)
+    deep_copied_broadcast_addresses << []
+end
+
+for i in 0..(broadcast_addresses.length - 1)
+    for j in 0..(broadcast_addresses[i].length - 1)
+        deep_copied_broadcast_addresses[i] << broadcast_addresses[i][j]
+    end
+end
+puts "Deep copied broadcast addresses #{deep_copied_broadcast_addresses}"
+
+deep_copied_broadcast_addresses.each do |address|
+    address[-1] = (address[-1] - 1)
+end
+puts "Deep copied broadcast addresses #{deep_copied_broadcast_addresses}"
 
 
 headers = [

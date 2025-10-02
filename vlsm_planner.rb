@@ -269,6 +269,11 @@ puts "Returnable broadcast addresses #{returnable_last_usable_addresses}"
 subnet_labels = collect_labels()
 puts "Labels: #{subnet_labels}"
 
+
+# --- Deal with headers --- 
+# format I'm looking for: label {insert spaces} | ...
+
+
 headers = [
   "label",
   "subnet",
@@ -280,4 +285,5 @@ headers = [
   "waste"
 ]
 # pad each header to 16 chars (spaces added if shorter)
-puts headers.map { |h| h.ljust(16) }.join
+# puts headers.map { |h| h.ljust(14) + "| "}.join
+# puts subnets.map { |s| s.ljust(14) + "| "}.join

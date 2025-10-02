@@ -266,6 +266,8 @@ deep_copied_broadcast_addresses.each do |subnet|
 end
 puts "Returnable broadcast addresses #{returnable_last_usable_addresses}"
 
+# --- Labels ---
+
 subnet_labels = collect_labels()
 puts "Labels: #{subnet_labels}"
 
@@ -285,5 +287,10 @@ headers = [
   "waste"
 ]
 # pad each header to 16 chars (spaces added if shorter)
-# puts headers.map { |h| h.ljust(14) + "| "}.join
+puts headers.map { |h| h.ljust(14) + "| "}.join
 # puts subnets.map { |s| s.ljust(14) + "| "}.join
+
+length = subnet_labels.length
+for i in 0..(length - 1)
+    puts(subnet_labels[i].ljust(14) + "| " + returnable_subnets[i].ljust(14) + "| " + "\\" + "#{prefixes[i]}".ljust(13) + "| " + first_usable[i].ljust(14) + "| " + returnable_last_usable_addresses[i].ljust(14) + "| " + returnable_broadcast_addresses[i].ljust(14) + "|")
+end

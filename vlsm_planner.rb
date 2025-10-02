@@ -178,6 +178,7 @@ subnets << network_address
 puts "Subnets: #{subnets}"
 for i in 0..capacities.length-1
     puts "#{i}, #{subnets[i].class}, #{capacities[i].class}"
+    # Issue here
     subnets << subnet_augmenter(subnets[i], capacities[i])
 end
 puts "Subnets -- main: #{subnets}"

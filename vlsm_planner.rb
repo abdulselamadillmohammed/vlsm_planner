@@ -292,5 +292,13 @@ puts headers.map { |h| h.ljust(14) + "| "}.join
 
 length = subnet_labels.length
 for i in 0..(length - 1)
-    puts(subnet_labels[i].ljust(14) + "| " + returnable_subnets[i].ljust(14) + "| " + "\\" + "#{prefixes[i]}".ljust(13) + "| " + first_usable[i].ljust(14) + "| " + returnable_last_usable_addresses[i].ljust(14) + "| " + returnable_broadcast_addresses[i].ljust(14) + "|")
+    puts(subnet_labels[i].ljust(14) + "| " + 
+    returnable_subnets[i].ljust(14) + "| " + "\\" + 
+    "#{prefixes[i]}".ljust(13) + "| " + 
+    first_usable[i].ljust(14) + "| " + 
+    returnable_last_usable_addresses[i].ljust(14) + "| " + 
+    returnable_broadcast_addresses[i].ljust(14) + "| " +
+    "#{capacities[i]}".ljust(14) + "| " + 
+    "#{wasted_spots_count[i]}".ljust(14) + "| "
+    )
 end

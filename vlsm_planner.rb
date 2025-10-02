@@ -224,6 +224,14 @@ for i in 1..(subnets.length - 1)
     broadcast_addresses << get_broadcast_address(subnets[i])
 end
 puts "BROADCAST: #{broadcast_addresses}"
+
+returnable_broadcast_addresses = []
+broadcast_addresses.each do |subnet|
+    returnable_broadcast_addresses << array_to_returnable_address(subnet)
+end
+puts "RETURNABLE BROADCAST: #{returnable_broadcast_addresses}"
+
+
 # --------------------------------------
 
 # --- Preparing last usable addresses ---
